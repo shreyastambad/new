@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "==== Disk Usage (df -h) ===="
+df -h
+
+echo -e "\n==== Memory Usage (free -h) ===="
+free -h
+
+echo -e "\n==== Swap Info (from /proc/meminfo) ===="
+grep -E 'SwapTotal|SwapFree' /proc/meminfo
+
+echo -e "\n==== Top Memory Consuming Processes ===="
+ps aux --sort=-%mem | awk 'NR<=10{print $0}'
